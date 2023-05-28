@@ -1,0 +1,17 @@
+WITH customer_month_use AS (
+SELECT 
+CUSTOMER_ID,
+DATE_TRUNC('MONTH', USEDATE) AS year_month,
+count(customer_id) AS COUNT_USE
+
+FROM USERLOG_
+GROUP BY (CUSTOMER_ID,year_month)
+)
+
+SELECT
+customer_id,
+AVG(COUNT_USE) AVG_USE,
+MIN(COUNT_USE) MIN_USE,
+MAX(COUNT_USE) MAX_USE
+FROM customer_month_use
+GROUP BY CUSTOMER_ID
