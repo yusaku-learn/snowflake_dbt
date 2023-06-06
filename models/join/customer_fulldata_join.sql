@@ -22,5 +22,7 @@ customer_join as (
     on customer_class.customer_id = describe1.customer_id
 )
 
-select *
+select 
+*,
+TIMESTAMPDIFF(MONTH, start_date, COALESCE(end_date, '2019-04-30')) AS membership_period
 from customer_join
